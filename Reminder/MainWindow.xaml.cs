@@ -65,15 +65,12 @@ namespace Reminder
         }
         private void SetAutoStart(bool enable)
         {
-            if (AutoStartHelper.SetMeStart(enable))
-            {
-                System.Windows.MessageBox.Show("设置开机自启动成功", "提示", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
+            if (!AutoStartHelper.SetMeStart(enable))
             {
                 System.Windows.MessageBox.Show("设置开机自启动失败", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 AutoStartCheckBox.IsChecked = !enable;
             }
+            
 
             //try
             //{

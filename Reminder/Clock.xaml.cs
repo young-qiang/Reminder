@@ -25,7 +25,7 @@ namespace Reminder
     /// </summary>
     public partial class Clock
     {
-         
+
         public Clock()
         {
             InitializeComponent();
@@ -39,7 +39,7 @@ namespace Reminder
 
             Task.Factory.StartNew(async () =>
            {
-               while (true   )
+               while (true)
                {
                    if (!MainWindow.isRunning)
                    {
@@ -68,13 +68,16 @@ namespace Reminder
 
         }
 
+        /// <summary>
+        /// 设置窗口位置，使其位于系统时间上方
+        /// </summary>
         private void SetLocation()
         {
             // 获取系统托盘信息
-            var infos = SystemTrayInfo.GetSystemTrayPosition();
+            var infos = SystemTrayInfo.GetTimeAreaCoordinates();
 
-            this.Left = infos.X - this.Width - 20;
-            this.Top = infos.Y + 10;
+            this.Left = infos.X;
+            this.Top = infos.Y - this.Height;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
